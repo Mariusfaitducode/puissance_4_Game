@@ -4,7 +4,7 @@ from game_rules import *
 
 def draw_grid(cnv):
     # Dessin plateau
-    cnv.create_rectangle(0, 0, WIDTH_TAB,HEIGHT_TAB, fill="green")
+    cnv.create_rectangle(0, 0, WIDTH_TAB,HEIGHT_TAB, fill="light gray")
 
     for i in range(0, NB_COLUMN + 1):
 
@@ -41,7 +41,7 @@ def draw_piece(cnv, l, c, char):
     y = l * (COTE_CASE + LINE_WIDTH / 2) + (COTE_CASE + LINE_WIDTH + 3) / 2
     r = COTE_CASE/2.5
 
-    if char == 'x':
+    if char == 'o':
         create_circle(cnv, x, y, r, fill='black')
     else:
         create_circle(cnv, x, y, r, fill='white')

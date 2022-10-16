@@ -24,8 +24,13 @@ def toggle_ordi(button_ami, button_ordi, typeGame):
         if button_ami.config('relief')[-1] == 'sunken':
             button_ami.config(relief="raised")
 
-def reset_grid(cnv):
 
-    grid = [['_' for x in range(NB_COLUMN)] for y in range(NB_LINE)]
+def reset_grid(cnv, grid, tour):
+
+    for l in range(NB_LINE):
+        for c in range(NB_COLUMN):
+            grid[l][c] = '_'
+
+    tour[0] = 0
     print("okk")
     draw_grid(cnv)

@@ -1,5 +1,6 @@
 from constante import *
 import affichage
+import intelligence as ordi
 
 
 def affiche_tab(grid):
@@ -19,13 +20,17 @@ def click_case(event, grid, tour, cnv):
 
     if 0 <= colonne < 7 and grid[0][colonne] == '_':
         print(colonne)
-        gravity(grid, colonne, tour, cnv)
+        gravity(grid, colonne, tour[0], cnv)
+        cnv.update()
 
-        if victoire(grid, tour):
-            print(f'Victoire, {pion_tour(tour)} ')
+        if victoire(grid, tour[0]):
+            print(f'Victoire, {pion_tour(tour[0])} ')
 
         else:
             tour[0] += 1
+            ordi.choix_colonne_ordi(grid, tour[0], cnv)
+            tour[0] += 1
+            cnv.update()
 
 
 def choix_colonne(grid):
@@ -41,10 +46,9 @@ def choix_colonne(grid):
             print('Ok')
             return colonne
 
-
 def pion_tour(tour):
 
-    if tour[0] % 2 == 0:
+    if tour % 2 == 0:
         return 'x'
     else:
         return 'o'
@@ -106,3 +110,16 @@ def victoire(grid, tour):
                     compte = compte + 1
                     if compte == 4:
                         return True
+
+
+def egalite(grid, tour):
+
+    for l in range(NB_LINE):
+        for c in range(NB_COLUMN):
+
+            if grid[l][c] == '_':
+                return False
+    if victoire(grid, tour):
+        return False
+
+    return True

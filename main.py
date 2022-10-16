@@ -6,12 +6,6 @@ import button
 
 typeGame = NO_GAME
 
-
-
-
-
-
-
 window = Tk()
 
 window.title("Puissance 4")
@@ -40,16 +34,13 @@ button_ordi = Button(text="Contre l'ordi", font='Helvetica 15 bold', background=
 button_ordi.place(x=2 * TAB_GAP + WIDTH_TAB, y=2.5 * TAB_GAP)
 
 button_reset = Button(window, text="reset", font='Helvetica 15 bold', background='light gray',
-                      command=(lambda: button.reset_grid(cnv)))
+                      command=(lambda: button.reset_grid(cnv, grid, tour)))
 
 
 button_reset.place(x=2 * TAB_GAP + WIDTH_TAB, y=4 * TAB_GAP)
 
-
-
-
 grid = [['_' for x in range(NB_COLUMN)] for y in range(NB_LINE)]
-tour = [1]
+tour = [0]
 
 cnv.bind("<Button-1>", lambda event: click_case(event, grid, tour, cnv))
 
