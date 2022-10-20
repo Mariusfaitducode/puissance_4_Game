@@ -17,7 +17,13 @@ def choix_colonne_ordi(grid, tour, cnv):
         if l > -1:
 
             grid[l][c] = game.pion_tour(tour)
-            score = minimax(grid, tour + 1, 3)
+            if tour < 6:
+                score = minimax(grid, tour + 1, 3)
+            elif tour < 25:
+                score = minimax(grid, tour + 1, 4)
+            else:
+                score = minimax(grid, tour + 1, 6)
+
             grid[l][c] = '_'
 
             print(score)

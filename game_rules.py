@@ -29,8 +29,13 @@ def click_case(event, grid, tour, cnv):
         else:
             tour[0] += 1
             ordi.choix_colonne_ordi(grid, tour[0], cnv)
-            tour[0] += 1
             cnv.update()
+
+            if victoire(grid, tour[0]):
+                print(f'Victoire, {pion_tour(tour[0])} ')
+            else:
+                tour[0] += 1
+
 
 
 def choix_colonne(grid):
