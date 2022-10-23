@@ -115,6 +115,31 @@ def coup_colonne(grid, colonne):
     return l-1
 
 
+def victoire_with_case(ligne, colonne, grid):
+
+    pion = grid[ligne][colonne]
+
+    for l in range(ligne-1, ligne+2):
+        for c in range(colonne-1, colonne+2):
+            count = 1
+
+            if 0 <= l < NB_LINE and 0 <= c < NB_COLUMN:
+
+                if grid[l][c] == pion:
+                    count = 2
+
+
+def search_next_case(case1, case2):
+
+    (l1, c1) = case1
+    (l2, c2) = case2
+
+    l3, c3 = 2 * l2 - l1, 2 * c2 - c1
+
+    
+
+
+
 
 
 

@@ -37,7 +37,6 @@ def click_case(event, grid, tour, cnv):
                 tour[0] += 1
 
 
-
 def choix_colonne(grid):
 
     condition = True
@@ -50,6 +49,7 @@ def choix_colonne(grid):
         if 0 < colonne < 8 and grid[0][colonne-1] == '_':
             print('Ok')
             return colonne
+
 
 def pion_tour(tour):
 
