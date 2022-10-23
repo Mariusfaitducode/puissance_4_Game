@@ -39,11 +39,19 @@ button_reset = Button(window, text="reset", font='Helvetica 15 bold', background
 
 button_reset.place(x=2 * TAB_GAP + WIDTH_TAB, y=4 * TAB_GAP)
 
+cnv_text = Canvas(window, width=4 * COTE_CASE, height=COTE_CASE)
+cnv_text.pack()
+cnv_text.place(x=1.5 * TAB_GAP + WIDTH_TAB, y=TAB_GAP)
+
+
+
+cnv_text.create_text(COTE_CASE * 2, COTE_CASE / 2, text="Select a game mode :",fill="black", font='Helvetica 18 bold')
+
 grid = [['_' for x in range(NB_COLUMN)] for y in range(NB_LINE)]
 tour = [0]
 typeGame = [NO_GAME]
 
-cnv.bind("<Button-1>", lambda event: click_case(event, grid, tour, cnv, typeGame))
+cnv.bind("<Button-1>", lambda event: click_case(event, grid, tour, cnv, typeGame, cnv_text))
 
 # cnv.bind("<Button-1>", click_case)
 
