@@ -92,7 +92,6 @@ def disp_win(tour, cnv_text):
                              font='Helvetica 18 bold')
 
 
-
 def victoire(grid, tour):
 
     for i in range(0, NB_LINE):
