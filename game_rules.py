@@ -12,29 +12,32 @@ def affiche_tab(grid):
             print(grid[x][y], end=' | ')
 
 
-def click_case(event, grid, tour, cnv):
+def click_case(event, grid, tour, cnv, typeGame):
 
-    print("clicked at", event.x, event.y)
+    if typeGame[0] != NO_GAME:
+        colonne = int(event.x / (WIDTH_TAB / NB_COLUMN))
 
-    colonne = int(event.x / (WIDTH_TAB / NB_COLUMN))
-
-    if 0 <= colonne < 7 and grid[0][colonne] == '_':
-        print(colonne)
-        gravity(grid, colonne, tour[0], cnv)
-        cnv.update()
-
-        if victoire(grid, tour[0]):
-            print(f'Victoire, {pion_tour(tour[0])} ')
-
-        else:
-            tour[0] += 1
-            ordi.choix_colonne_ordi(grid, tour[0], cnv)
+        if 0 <= colonne < 7 and grid[0][colonne] == '_':
+            print(colonne)
+            ligne = gravity(grid, colonne, tour[0], cnv)
             cnv.update()
 
-            if victoire(grid, tour[0]):
+            if ordi.victoire_with_case(ligne, colonne, grid):
                 print(f'Victoire, {pion_tour(tour[0])} ')
+                typeGame[0] = NO_GAME
+
             else:
                 tour[0] += 1
+
+                if typeGame[0] == ORDI:
+                    ordi.choix_colonne_ordi(grid, tour[0], cnv)
+                    cnv.update()
+
+                    if victoire(grid, tour[0]):
+                        print(f'Victoire, {pion_tour(tour[0])} ')
+                        typeGame[0] = NO_GAME
+                    else:
+                        tour[0] += 1
 
 
 def choix_colonne(grid):
@@ -73,6 +76,7 @@ def gravity(grid, colonne, tour, cnv):
 
         else:
             x = x + 1
+    return x - 1
 
 
 def victoire(grid, tour):
