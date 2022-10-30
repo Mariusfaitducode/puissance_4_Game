@@ -34,7 +34,6 @@ def draw_piece_grid(cnv, grid):
                 draw_piece(cnv, l, c, grid[l][c])
 
 
-
 def draw_piece(cnv, l, c, char):
 
     x = c * (COTE_CASE + LINE_WIDTH / 2) + (COTE_CASE + LINE_WIDTH + 3) / 2
@@ -49,4 +48,15 @@ def draw_piece(cnv, l, c, char):
 
 def create_circle(cnv, x, y, r, **kwargs):
     return cnv.create_oval(x - r, y - r, x + r, y + r, **kwargs)
+
+
+def disp_win(tour, cnv_text):
+    if pion_tour(tour[0]) == 'o':
+        cnv_text.delete('all')
+        cnv_text.create_text(COTE_CASE * 1.5, COTE_CASE / 2, text="Black win !", fill="black",
+                             font='Helvetica 18 bold')
+    else:
+        cnv_text.delete('all')
+        cnv_text.create_text(COTE_CASE * 1.5, COTE_CASE / 2, text="White win !", fill="black",
+                             font='Helvetica 18 bold')
 
