@@ -21,7 +21,7 @@ def choix_colonne_ordi(grid, tour, cnv):
 
             grid[l][c] = game.pion_tour(tour)
 
-            score = minimax(grid, tour + 1, 5 + filled, (l, c))
+            score = minimax_alpha_beta(grid, tour + 1, 7 + filled, (l, c), -1000, 1000)
 
             """if tour < 6:
                 score = minimax(grid, tour + 1, 3, (l, c))
@@ -48,12 +48,13 @@ def choix_colonne_ordi(grid, tour, cnv):
 
 
 # 'x' == ordi
-def minimax(grid, tour, profondeur, last_case):
+def minimax_alpha_beta(grid, tour, profondeur, last_case, alpha, beta):
 
     max = None
     (l, c) = last_case
 
     if victoire_with_case(l, c, grid):
+        # print("vic")
     # if game.victoire(grid, tour):
         # print("vic detected")
 
@@ -65,7 +66,7 @@ def minimax(grid, tour, profondeur, last_case):
             return 100 + profondeur * 10
 
     elif game.egalite(grid, tour):
-        print("end game")
+        # print("end game")
         print(tour)
         return 0
 
@@ -86,12 +87,18 @@ def minimax(grid, tour, profondeur, last_case):
 
                     grid[l][c] = game.pion_tour(tour)
 
-                    score = minimax(grid, tour + 1, profondeur-1, (l, c))
+                    score = minimax_alpha_beta(grid, tour + 1, profondeur-1, (l, c), alpha, beta)
 
                     grid[l][c] = '_'
 
                     if score > max:
                         max = score
+
+                    if score >= beta:
+                        return score
+
+                    if score > alpha:
+                        alpha = score
 
         elif game.pion_tour(tour) == 'x':
 
@@ -105,12 +112,18 @@ def minimax(grid, tour, profondeur, last_case):
 
                     grid[l][c] = game.pion_tour(tour)
 
-                    score = minimax(grid, tour + 1, profondeur - 1, (l, c))
+                    score = minimax_alpha_beta(grid, tour + 1, profondeur - 1, (l, c), alpha, beta)
 
                     grid[l][c] = '_'
 
                     if score < max:
                         max = score
+
+                    if score <= alpha:
+                        return score
+
+                    if score < beta:
+                        beta = score
 
     return max
 

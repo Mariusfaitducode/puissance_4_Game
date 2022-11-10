@@ -1,6 +1,7 @@
 from constante import *
 import affichage
 import intelligence as ordi
+import time
 
 
 def affiche_tab(grid):
@@ -31,7 +32,10 @@ def click_case(event, grid, tour, cnv, typeGame, cnv_text):
                 tour[0] += 1
 
                 if typeGame[0] == ORDI:
+                    tps1 = time.time()
                     ordi.choix_colonne_ordi(grid, tour[0], cnv)
+                    tps2 = time.time()
+                    print("time = ", tps2-tps1)
                     cnv.update()
 
                     if victoire(grid, tour[0]):
