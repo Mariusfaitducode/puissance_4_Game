@@ -25,7 +25,7 @@ def click_case(event, grid, tour, cnv, typeGame, cnv_text):
 
             if ordi.victoire_with_case(ligne, colonne, grid):
                 print(f'Victoire, {pion_tour(tour[0])} ')
-                disp_win(tour, cnv_text)
+                affichage.disp_win(tour, cnv_text)
                 typeGame[0] = NO_GAME
 
             else:
@@ -40,7 +40,7 @@ def click_case(event, grid, tour, cnv, typeGame, cnv_text):
 
                     if victoire(grid, tour[0]):
                         print(f'Victoire, {pion_tour(tour[0])} ')
-                        disp_win(tour, cnv_text)
+                        affichage.disp_win(tour, cnv_text)
                         typeGame[0] = NO_GAME
                     else:
                         tour[0] += 1
@@ -83,17 +83,6 @@ def gravity(grid, colonne, tour, cnv):
         else:
             x = x + 1
     return x - 1
-
-
-def disp_win(tour, cnv_text):
-    if pion_tour(tour[0]) == 'o':
-        cnv_text.delete('all')
-        cnv_text.create_text(COTE_CASE * 1.5, COTE_CASE / 2, text="Black win !", fill="black",
-                             font='Helvetica 18 bold')
-    else:
-        cnv_text.delete('all')
-        cnv_text.create_text(COTE_CASE * 1.5, COTE_CASE / 2, text="White win !", fill="black",
-                             font='Helvetica 18 bold')
 
 
 def victoire(grid, tour):

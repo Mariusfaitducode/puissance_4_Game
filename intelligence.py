@@ -23,13 +23,6 @@ def choix_colonne_ordi(grid, tour, cnv):
 
             score = minimax_alpha_beta(grid, tour + 1, 7 + filled, (l, c), -1000, 1000)
 
-            """if tour < 6:
-                score = minimax(grid, tour + 1, 3, (l, c))
-            elif tour < 25:
-                score = minimax(grid, tour + 1, 4, (l, c))
-            else:
-                score = minimax(grid, tour + 1, 6, (l, c))"""
-
             grid[l][c] = '_'
 
             print(score)
@@ -148,7 +141,6 @@ def filled_colonne(grid):
     return count
 
 
-
 def victoire_with_case(ligne, colonne, grid):
 
     pion = grid[ligne][colonne]
@@ -186,14 +178,4 @@ def search_next_case(case1, case2, grid, pion):
 
     else:
         return 0
-
-
     
-
-
-
-
-
-
-
-
